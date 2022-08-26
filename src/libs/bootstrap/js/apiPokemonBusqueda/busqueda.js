@@ -45,8 +45,29 @@ function search1() {
     let input_text = document.getElementById("input-search1").value
     let test_search = pokeDataList.filter(obj => {
         return obj.name === input_text.toLowerCase()
-    })
+    })[0]
     console.log(test_search)
+
+    const result = document.createElement('div');
+    result.id = "result1-div"
+    const imgNormal = document.createElement('img')
+    imgNormal.src = test_search.imgUrlNormal
+    const imgShiny = document.createElement('img')
+    imgShiny.src = test_search.imgUrlShiny
+    const name = test_search.name.charAt(0).toUpperCase() + test_search.name.slice(1);
+    result.appendChild(document.createTextNode(`Name: ${name}`))
+    result.appendChild(document.createElement("br"))
+    result.appendChild(document.createTextNode(`Id: ${test_search.id}`))
+    result.appendChild(document.createElement("br"))
+    result.appendChild(document.createTextNode('Normal version:'))
+    result.appendChild(document.createElement("br"))
+    result.appendChild(imgNormal)
+    result.appendChild(document.createElement("br"))
+    result.appendChild(document.createTextNode('\nShiny version:'))
+    result.appendChild(document.createElement("br"))
+    result.appendChild(imgShiny)
+
+    document.getElementById('result-container').appendChild(result)
 }
 
 document.getElementById("search1").addEventListener("click", search1)
